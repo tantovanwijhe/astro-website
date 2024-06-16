@@ -3,6 +3,7 @@
   @import url("./colors.css");
   @import url("./effects.css");
   @import url("./text.css");
+  @import url("./spacing.css");
 
   :root {
     --accent: 136, 58, 234;
@@ -14,6 +15,15 @@
       rgb(var(--accent-light)) 30%,
       white 60%
     );
+  }
+
+  body {
+    padding: 0 3.2rem;
+  }
+
+  main {
+    min-height: 100vh;
+    background: var(--primary--200);
   }
 
   html {
@@ -38,5 +48,8 @@
       Bitstream Vera Sans Mono,
       Courier New,
       monospace;
+  }
+  button {
+    border: 0;
   }
 </style>
