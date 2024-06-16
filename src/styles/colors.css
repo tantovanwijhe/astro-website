@@ -1,0 +1,25 @@
+:root {
+  /* Color styles */
+  --neutral--800: rgba(18, 18, 19, 1);
+  --neutral--700: rgba(35, 37, 37, 1);
+  --neutral--600: rgba(53, 55, 56, 1);
+  --neutral--500: rgba(70, 74, 74, 1);
+  --neutral--400: rgba(88, 92, 93, 1);
+  --neutral--300: rgba(121, 125, 125, 1);
+  --neutral--200: rgba(155, 157, 158, 1);
+  --neutral--100: rgba(188, 190, 190, 1);
+  --neutral--050: rgba(222, 222, 223, 1);
+  --neutral--00: rgba(255, 255, 255, 1);
+  --primary--800: rgba(18, 27, 45, 1);
+  --primary--700: rgba(35, 53, 90, 1);
+  --primary--600: rgba(53, 80, 135, 1);
+  --primary--500: rgba(70, 106, 180, 1);
+  --primary--400: rgba(88, 133, 225, 1);
+  --primary--300: rgba(121, 157, 231, 1);
+  --primary--200: rgba(155, 182, 237, 1);
+  --primary--100: rgba(188, 206, 243, 1);
+  --primary--050: rgba(222, 231, 249, 1);
+  --text--subdued: rgba(70, 74, 74, 1);
+  --text--accent: rgba(53, 80, 135, 1);
+  --text--base: rgba(18, 18, 19, 1);
+}
