@@ -11,29 +11,24 @@ export const Navigation = () => {
     setMenuHeader(text)
   }
 
-  const handleNavClick = () => {
-    setExpand(prevExpand => !prevExpand)
-  }
-
   return (
     <div css={styles}>
-      <nav>
-        <div
-          onClick={handleNavClick}
-          onBlur={() => setExpand(false)}
-          tabIndex={0}
-        >
+      <nav
+        onClick={() => setExpand(true)}
+        onMouseLeave={() => setExpand(false)}
+        tabIndex={0}
+      >
+        <div className={expand ? "active" : ""}>
           <Icon icon={faHouse} />
           <span>{menuHeader || "Home"}</span>
           <Icon icon={faBars} />
         </div>
         {expand && (
-          <ul
-            className={expand ? "open" : ""}
-            onMouseLeave={() => handleTextChange("Home")}
-          >
+          <ul onMouseLeave={() => handleTextChange("Home")}>
             <li onMouseEnter={() => handleTextChange("ONE")}>
-              <Icon icon={faHouse} />
+              <a href="/asdf">
+                <Icon icon={faHouse} />
+              </a>
             </li>
             <li onMouseEnter={() => handleTextChange("TWO")}>
               <Icon icon={faHouse} />
@@ -126,6 +121,10 @@ const styles = css`
       display: flex;
       gap: var(--spacing--5);
       background-color: var(--neutral--800);
+
+      &.active {
+        cursor: default;
+      }
 
       i {
         width: 70px;
