@@ -45,6 +45,19 @@ const styles = css`
   ); // Note: backdrop-filter has minimal browser support
 
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  transition-duration: 0.3s;
+
+  :hover {
+    cursor: pointer;
+    scale: 1.05;
+    transition-property: scale;
+  }
+
+  :active {
+    transition-duration: 0.1s;
+    scale: 0.95;
+    transition-property: scale;
+  }
 
   &::before {
     content: "";
