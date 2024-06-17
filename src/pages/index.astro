@@ -1,27 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro"
+import {HeroSection} from "../components/HeroSection"
+import {Navigation} from "../components/Navigation"
 ---
 
 <Layout title="Welcome to Astro.">
   <main>
-    <section class="hero">
-      <h1>
-        Hi, I’m Tanto. <br /> Full Stack Software Engineer <br />Based in
-        Amsterdam.
-      </h1>
-    </section>
+    <Navigation client:load />
+    <HeroSection />
   </main>
 </Layout>
-
-<style>
-  .hero {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 7rem);
-    text-align: center;
-    > h1 {
-      font-size: 7.2rem;
-    }
-  }
-</style>
