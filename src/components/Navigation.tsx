@@ -43,7 +43,7 @@ export const Navigation = ({
         </div>
         <ul onMouseLeave={() => handleTextChange("Home")}>
           {options.map((option, index) => (
-            <a key={index} href={option.path}>
+            <a key={index} href={option.path} draggable={false}>
               <li onMouseEnter={() => handleTextChange(option.text)}>
                 <Icon icon={option.icon} />
               </li>
@@ -92,6 +92,7 @@ const styles = css`
           width: 0;
           height: 0;
           overflow: hidden;
+          user-select: none;
         }
 
         span {
