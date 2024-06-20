@@ -2,12 +2,14 @@
 import "../styles/Global.astro"
 import {Navigation} from "../components/Navigation"
 import {navMap} from "../nav-map"
+import {faCircleQuestion} from "@fortawesome/free-solid-svg-icons"
 interface Props {
   title: string
-  header: string
 }
 
-const {title, header} = Astro.props
+const {title} = Astro.props
+const icon =
+  navMap.find(option => option.text === title)?.icon || faCircleQuestion
 ---
 
 <html lang="en">
@@ -20,7 +22,7 @@ const {title, header} = Astro.props
     <title>{title}</title>
   </head>
   <body>
-    <Navigation client:idle options={navMap} title={header} />
+    <Navigation client:idle options={navMap} title={title} icon={icon} />
     <slot />
   </body>
 </html>

@@ -1,5 +1,5 @@
 import {css} from "@emotion/react"
-import {faHouse} from "@fortawesome/free-solid-svg-icons"
+import {faHouse, type IconDefinition} from "@fortawesome/free-solid-svg-icons"
 import clsx from "clsx"
 import {useEffect, useRef, useState} from "react"
 import {Icon} from "./Icon"
@@ -8,17 +8,15 @@ import type {NavLink} from "../nav-map"
 export const Navigation = ({
   options,
   title,
+  icon,
 }: {
   options: NavLink[]
   title: string
+  icon: IconDefinition
 }) => {
   const [menuHeader, setMenuHeader] = useState<string | null>(null)
   const [expand, setExpand] = useState<boolean>(false)
   const navRef = useRef<HTMLDivElement>(null)
-
-  const handleTextChange = (text: string) => {
-    setMenuHeader(text)
-  }
 
   const closeMenu = (e: MouseEvent) => {
     if (navRef.current && !navRef.current.contains(e.target as Node)) {
@@ -37,14 +35,13 @@ export const Navigation = ({
     <div className={clsx(expand && "expanded")} css={styles}>
       <nav onClick={() => setExpand(!expand)} tabIndex={0} ref={navRef}>
         <div>
-          <Icon icon={faHouse} />
+          <Icon icon={icon} />
           <span>{menuHeader || title}</span>
-          {/* <Icon icon={faHouse} /> */}
         </div>
-        <ul onMouseLeave={() => handleTextChange("Home")}>
+        <ul onMouseLeave={() => setMenuHeader("Home")}>
           {options.map((option, index) => (
             <a key={index} href={option.path} draggable={false}>
-              <li onMouseEnter={() => handleTextChange(option.text)}>
+              <li onMouseEnter={() => setMenuHeader(option.text)}>
                 <Icon icon={option.icon} />
               </li>
             </a>
