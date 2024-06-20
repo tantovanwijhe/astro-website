@@ -1,54 +1,81 @@
 import {css} from "@emotion/react"
-import {faBars, faHouse} from "@fortawesome/free-solid-svg-icons"
+import {
+  faAddressCard,
+  faBars,
+  faBriefcase,
+  faGraduationCap,
+  faHouse,
+  faNewspaper,
+} from "@fortawesome/free-solid-svg-icons"
+import clsx from "clsx"
+import {useEffect, useRef, useState} from "react"
 import {Icon} from "./Icon"
-import {useState} from "react"
 
 export const Navigation = () => {
   const [menuHeader, setMenuHeader] = useState<string | null>(null)
   const [expand, setExpand] = useState<boolean>(false)
+  const navRef = useRef<HTMLDivElement>(null)
 
   const handleTextChange = (text: string) => {
     setMenuHeader(text)
   }
 
+  const closeMenu = (e: MouseEvent) => {
+    if (navRef.current && !navRef.current.contains(e.target as Node)) {
+      setExpand(false)
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("mousedown", closeMenu)
+    return () => {
+      document.removeEventListener("mousedown", closeMenu)
+    }
+  })
+
   return (
-    <div css={styles}>
-      <nav
-        onClick={() => setExpand(true)}
-        onMouseLeave={() => setExpand(false)}
-        tabIndex={0}
-      >
-        <div className={expand ? "active" : ""}>
+    <div className={clsx(expand && "expanded")} css={styles}>
+      <nav onClick={() => setExpand(!expand)} tabIndex={0} ref={navRef}>
+        <div>
           <Icon icon={faHouse} />
           <span>{menuHeader || "Home"}</span>
-          <Icon icon={faBars} />
+          {/* <Icon icon={faHouse} /> */}
         </div>
-        {expand && (
-          <ul onMouseLeave={() => handleTextChange("Home")}>
+        <ul onMouseLeave={() => handleTextChange("Home")}>
+          <a href="/">
             <li onMouseEnter={() => handleTextChange("ONE")}>
-              <a href="/asdf">
-                <Icon icon={faHouse} />
-              </a>
+              <Icon icon={faNewspaper} />
             </li>
-            <li onMouseEnter={() => handleTextChange("TWO")}>
-              <Icon icon={faHouse} />
+          </a>
+          <a href="/">
+            <li onMouseEnter={() => handleTextChange("ONE")}>
+              <Icon icon={faGraduationCap} />
             </li>
+          </a>
+          <a href="/">
             <li onMouseEnter={() => handleTextChange("THREE")}>
-              <Icon icon={faHouse} />
+              <Icon icon={faBriefcase} />
             </li>
-          </ul>
-        )}
+          </a>
+          <a href="/">
+            <li onMouseEnter={() => handleTextChange("TWO")}>
+              <Icon icon={faAddressCard} />
+            </li>
+          </a>
+        </ul>
       </nav>
     </div>
   )
 }
 
 const styles = css`
-  min-height: 70px;
+  --base-height: 83px;
+  --dynamic-width: min(40rem, 95vw);
+
+  height: var(--base-height);
   position: fixed;
   left: 0;
   right: 0;
-  flex-grow: 1;
 
   display: flex;
   flex-direction: column;
@@ -57,23 +84,58 @@ const styles = css`
 
   user-select: none;
 
+  transition: height 0.3s ease-out;
+
+  &.expanded {
+    height: 200px;
+
+    nav {
+      :hover {
+        cursor: default;
+      }
+
+      div {
+        width: var(--dynamic-width);
+        background-color: var(--neutral--800);
+        background-size: 200% 100%;
+        background-position: right bottom;
+
+        svg {
+          width: 0;
+          height: 0;
+          overflow: hidden;
+        }
+
+        span {
+          width: calc(var(--dynamic-width) / 2);
+        }
+      }
+
+      ul {
+        height: 10rem;
+        padding: 0.8rem;
+      }
+    }
+  }
+
   nav {
     display: flex;
     flex-direction: column;
     gap: var(--spacing--5);
 
-    width: 460px;
+    flex: 1 1 460px;
     border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 36px;
+    border-radius: 42px;
 
     color: #fff;
     background-color: rgba(1, 1, 1, 0.8);
-    /* background-color: rgba(1, 1, 1, 1); */
 
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     overflow: hidden;
+
+    transition-duration: 0.3s;
 
     &::before {
       content: "";
@@ -101,8 +163,6 @@ const styles = css`
       mask-composite: exclude;
     }
 
-    transition-duration: 0.3s;
-
     :hover {
       cursor: pointer;
       scale: 1.05;
@@ -110,38 +170,45 @@ const styles = css`
     }
 
     :active {
-      transition-duration: 0.1s;
+      transition-duration: 0.3s;
       scale: 0.95;
       transition-property: scale;
     }
 
     > div {
-      width: 100%;
+      height: var(--base-height);
+      width: 340px;
       border-radius: inherit;
+
       display: flex;
       gap: var(--spacing--5);
-      background-color: var(--neutral--800);
 
-      &.active {
-        cursor: default;
-      }
+      transition:
+        width 0.3s ease-out,
+        background-color 0.3s ease-in-out;
 
       i {
-        width: 70px;
-        height: 70px;
-        flex: 0 0 70px;
+        width: var(--base-height);
+        height: var(--base-height);
         border-radius: 100px;
 
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-shrink: 0;
 
         background-color: var(--neutral--800);
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+        svg {
+          transition:
+            width 0.3s ease-out,
+            height 0.3s ease-out;
+        }
       }
 
       span {
-        min-height: 70px;
+        min-height: var(--base-height);
         width: 100%;
         border-radius: inherit;
 
@@ -154,47 +221,52 @@ const styles = css`
 
         font-size: var(--desktop--heading---h3);
         font-weight: 700;
+
+        transition: width 0.5s ease-out;
       }
     }
 
     ul {
+      height: 0;
+
       display: flex;
       justify-content: center;
       gap: 2rem;
 
-      padding: 8px;
       border-radius: inherit;
-
-      /* background-color: var(--neutral--800); */
-      /* background-color: rgba(1, 1, 1, 1); */
 
       font-size: var(--desktop--heading---h4);
       font-weight: 600;
 
-      li {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
+      transition: all 0.5s ease;
+      transform: translateY(0);
 
-        padding: 2rem 2rem;
-
-        /* border: 1px dotted red; */
-        border-radius: inherit;
-
-        background-color: var(--neutral--800);
-
-        :hover {
-          transition-duration: 0.1s;
-          background-color: var(--neutral--500);
-        }
-
-        i {
-          width: 25px;
-          height: 25px;
+      a {
+        li {
+          border-radius: 32px;
 
           display: flex;
-          justify-content: center;
           align-items: center;
+          gap: 2rem;
+
+          padding: 2rem 2rem;
+          background-color: var(--neutral--800);
+
+          transition: all 0.5s ease;
+
+          :hover {
+            transition-duration: 0.3s;
+            background-color: var(--neutral--500);
+          }
+
+          i {
+            width: 25px;
+            height: 25px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
         }
       }
     }
