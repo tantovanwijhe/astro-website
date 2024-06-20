@@ -1,12 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro"
 import {HeroSection} from "../components/HeroSection"
-import {Navigation} from "../components/Navigation"
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Welcome to Astro." , header="Home">
   <main>
-    <Navigation client:load />
     <HeroSection />
   </main>
 </Layout>

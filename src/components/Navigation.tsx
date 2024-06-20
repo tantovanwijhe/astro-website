@@ -1,17 +1,17 @@
 import {css} from "@emotion/react"
-import {
-  faAddressCard,
-  faBars,
-  faBriefcase,
-  faGraduationCap,
-  faHouse,
-  faNewspaper,
-} from "@fortawesome/free-solid-svg-icons"
+import {faHouse} from "@fortawesome/free-solid-svg-icons"
 import clsx from "clsx"
 import {useEffect, useRef, useState} from "react"
 import {Icon} from "./Icon"
+import type {NavLink} from "../nav-map"
 
-export const Navigation = () => {
+export const Navigation = ({
+  options,
+  title,
+}: {
+  options: NavLink[]
+  title: string
+}) => {
   const [menuHeader, setMenuHeader] = useState<string | null>(null)
   const [expand, setExpand] = useState<boolean>(false)
   const navRef = useRef<HTMLDivElement>(null)
@@ -38,30 +38,17 @@ export const Navigation = () => {
       <nav onClick={() => setExpand(!expand)} tabIndex={0} ref={navRef}>
         <div>
           <Icon icon={faHouse} />
-          <span>{menuHeader || "Home"}</span>
+          <span>{menuHeader || title}</span>
           {/* <Icon icon={faHouse} /> */}
         </div>
         <ul onMouseLeave={() => handleTextChange("Home")}>
-          <a href="/">
-            <li onMouseEnter={() => handleTextChange("ONE")}>
-              <Icon icon={faNewspaper} />
-            </li>
-          </a>
-          <a href="/">
-            <li onMouseEnter={() => handleTextChange("ONE")}>
-              <Icon icon={faGraduationCap} />
-            </li>
-          </a>
-          <a href="/">
-            <li onMouseEnter={() => handleTextChange("THREE")}>
-              <Icon icon={faBriefcase} />
-            </li>
-          </a>
-          <a href="/">
-            <li onMouseEnter={() => handleTextChange("TWO")}>
-              <Icon icon={faAddressCard} />
-            </li>
-          </a>
+          {options.map((option, index) => (
+            <a key={index} href={option.path}>
+              <li onMouseEnter={() => handleTextChange(option.text)}>
+                <Icon icon={option.icon} />
+              </li>
+            </a>
+          ))}
         </ul>
       </nav>
     </div>
@@ -76,6 +63,7 @@ const styles = css`
   position: fixed;
   left: 0;
   right: 0;
+  top: 1rem;
 
   display: flex;
   flex-direction: column;
@@ -84,7 +72,7 @@ const styles = css`
 
   user-select: none;
 
-  transition: height 0.3s ease-out;
+  transition: height 0.2s ease-out;
 
   &.expanded {
     height: 200px;
