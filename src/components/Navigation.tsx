@@ -38,7 +38,7 @@ export const Navigation = ({
           <Icon icon={icon} />
           <span>{menuHeader || title}</span>
         </div>
-        <ul onMouseLeave={() => setMenuHeader("Home")}>
+        <ul onMouseLeave={() => setMenuHeader(title)}>
           {options.map((option, index) => (
             <a key={index} href={option.path} draggable={false}>
               <li onMouseEnter={() => setMenuHeader(option.text)}>
