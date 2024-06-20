@@ -1,5 +1,5 @@
 import {css} from "@emotion/react"
-import {faHouse, type IconDefinition} from "@fortawesome/free-solid-svg-icons"
+import {type IconDefinition} from "@fortawesome/free-solid-svg-icons"
 import clsx from "clsx"
 import {useEffect, useRef, useState} from "react"
 import {Icon} from "./Icon"
@@ -74,7 +74,23 @@ const styles = css`
   &.expanded {
     height: 200px;
 
+    @keyframes scaleUp {
+      0% {
+        transform: scale(0.9);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    animation: scaleUp 0.3s ease-in-out;
+
     nav {
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+
       :hover {
         cursor: default;
       }
@@ -157,7 +173,7 @@ const styles = css`
 
     :active {
       transition-duration: 0.3s;
-      scale: 0.95;
+      scale: 0.9;
       transition-property: scale;
     }
 
@@ -187,9 +203,7 @@ const styles = css`
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 
         svg {
-          transition:
-            width 0.3s ease-out,
-            height 0.3s ease-out;
+          transition: inherit;
         }
       }
 
@@ -208,7 +222,7 @@ const styles = css`
         font-size: var(--desktop--heading---h3);
         font-weight: 700;
 
-        transition: width 0.5s ease-out;
+        transition: width 0.2s ease-out;
       }
     }
 
