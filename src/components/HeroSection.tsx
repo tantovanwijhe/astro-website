@@ -5,7 +5,7 @@ import {faAngleDown} from "@fortawesome/free-solid-svg-icons"
 export const HeroSection = () => {
   return (
     <section css={styles}>
-      <h1>
+      <h1 className="hero-text">
         Hi, I’m Tanto. <br /> Full Stack Software Engineer <br />
         Based in Amsterdam.
       </h1>
@@ -23,8 +23,8 @@ const styles = css`
   align-items: center;
   gap: var(--spacing--24);
 
-  h1 {
-    font-size: 7.2rem;
+  .hero-text {
+    font-size: var(--mobile--heading---h1);
     line-height: 1.2;
     letter-spacing: -0.03em;
     text-align: center;
@@ -37,5 +37,9 @@ const styles = css`
       var(--neutral--00),
       var(--primary--100)
     );
+
+    @media (min-width: 768px) {
+      font-size: 7.2rem;
+    }
   }
 `

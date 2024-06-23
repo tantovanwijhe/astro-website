@@ -87,7 +87,7 @@ const styles = css`
 
   span {
     color: #fff;
-    font-size: var(--desktop--heading---h3);
+    font-size: var(--mobile--heading---h5);
   }
 
   i {
