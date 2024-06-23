@@ -20,41 +20,41 @@
   border-radius: 2rem;
   backdrop-filter: blur(50px);
   -webkit-backdrop-filter: blur(2rem);
-
-  ::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    inset: 0;
-    padding: 1.4px;
-    border-radius: 2rem;
-    background: linear-gradient(
-      165deg,
-      rgba(255, 255, 255, 0.4) 0%,
-      rgba(255, 255, 255, 0) 40%,
-      rgba(255, 255, 255, 0) 57%,
-      rgba(255, 255, 255, 0.1) 100%
-    );
-    background-blend-mode: luminosity;
-    -webkit-mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
-  }
-
-  :hover {
-    background: linear-gradient(
-        0deg,
-        rgba(94, 94, 94, 0.06) 0%,
-        rgba(94, 94, 94, 0.06) 100%
-      ),
-      rgba(255, 255, 255, 0.04);
-    background-blend-mode: color-dodge, lighten;
-    border-radius: inherit;
-  }
 }
+
+.glass::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  padding: 1.4px;
+  border-radius: 2rem;
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0) 57%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  background-blend-mode: luminosity;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* .glass:hover {
+  background: linear-gradient(
+      0deg,
+      rgba(94, 94, 94, 0.06) 0%,
+      rgba(94, 94, 94, 0.06) 100%
+    ),
+    rgba(255, 255, 255, 0.04);
+  background-blend-mode: color-dodge, lighten;
+  border-radius: inherit;
+} */
