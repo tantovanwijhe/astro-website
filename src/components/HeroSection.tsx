@@ -10,7 +10,7 @@ export const HeroSection = () => {
         Based in Amsterdam.
       </h1>
 
-      <Button text="duis magna" icon={faAngleDown} />
+      <Button text="work in progress" />
     </section>
   )
 }
