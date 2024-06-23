@@ -16,7 +16,7 @@ export const HeroSection = () => {
 }
 
 const styles = css`
-  height: calc(100vh);
+  height: calc(80vh);
   display: flex;
   flex-direction: column;
   justify-content: center;
