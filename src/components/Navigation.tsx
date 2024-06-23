@@ -44,7 +44,12 @@ export const Navigation = ({
         </div>
         <ul onMouseLeave={() => setMenuHeader(section)}>
           {options.map((option, index) => (
-            <a key={index} href={option.path} draggable={false}>
+            <a
+              key={index}
+              href={option.path}
+              draggable={false}
+              className="glass"
+            >
               <li onMouseEnter={() => setMenuHeader(option.section)}>
                 <Icon icon={option.icon} />
               </li>
@@ -60,7 +65,7 @@ const styles = css`
   --base-height: 83px;
   --dynamic-width: min(40rem, 95vw);
 
-z-index: 9999;
+  z-index: 9999;
   height: var(--base-height);
   position: fixed;
   left: 0;
@@ -93,7 +98,9 @@ z-index: 9999;
 
     animation: scaleUp 0.3s ease-in-out;
 
+    /* TODO: keyboard accessibility */
     nav {
+      background-color: rgba(1, 1, 1, 0.7);
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
 
       :hover {
@@ -126,7 +133,8 @@ z-index: 9999;
       }
 
       ul {
-        height: 10rem;
+        align-items: center;
+        height: 6rem;
         padding: 0.8rem;
       }
     }
@@ -138,11 +146,11 @@ z-index: 9999;
     gap: var(--spacing--5);
 
     flex: 1 1 460px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    align-items: center;
     border-radius: 42px;
 
     color: #fff;
-    background-color: rgba(1, 1, 1, 0.8);
+    background-color: rgba(1, 1, 1, 0.6);
 
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(5px);
@@ -163,15 +171,17 @@ z-index: 9999;
       bottom: 0;
       left: 0;
       border-radius: inherit;
-      padding: 0.1rem;
+      padding: 1.4px;
       background: linear-gradient(
-        to bottom right,
-        rgba(255, 255, 255, 0.75),
-        rgba(255, 255, 255, 0),
-        rgba(255, 255, 255, 0),
-        transparent
+        165deg,
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(255, 255, 255, 0) 40%,
+        rgba(255, 255, 255, 0) 57%,
+        rgba(255, 255, 255, 0.1) 100%
       );
-      mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+      mask:
+        linear-gradient(#000, #000) content-box,
+        linear-gradient(#000, #000);
       mask-composite: exclude;
     }
 
@@ -195,7 +205,9 @@ z-index: 9999;
       display: flex;
       gap: var(--spacing--5);
 
-      transition: width 0.3s ease-out, background-color 0.3s ease-in-out;
+      transition:
+        width 0.3s ease-out,
+        background-color 0.3s ease-in-out;
 
       i {
         width: var(--base-height);
@@ -246,25 +258,40 @@ z-index: 9999;
       font-size: var(--desktop--heading---h4);
       font-weight: 600;
 
-      transition: all 0.5s ease;
+      transition: all 0.3s ease;
       transform: translateY(0);
 
       a {
-        li {
-          border-radius: 32px;
+        width: 65px;
+        height: 65px;
+        border-radius: 32px;
 
+        background: linear-gradient(
+            0deg,
+            var(--neutral--400) 0%,
+            var(--neutral--800) 100%
+          ),
+          var(--neutral--800);
+        background-blend-mode: color-dodge, lighten;
+
+        ::before {
+          border-radius: 32px;
+          padding: 1.4px;
+        }
+
+        li {
           display: flex;
           align-items: center;
           gap: 2rem;
 
           padding: 2rem 2rem;
-          background-color: var(--neutral--800);
+          border-radius: inherit;
 
           transition: all 0.5s ease;
 
           :hover {
             transition-duration: 0.3s;
-            background-color: var(--neutral--500);
+            background-color: var(--neutral--600);
           }
 
           i {
