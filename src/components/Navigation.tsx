@@ -26,15 +26,14 @@ export const Navigation = ({
 
   useEffect(() => {
     setExpand(false)
-    setTimeout(() => navRef.current, 10)
-  }, [])
+    setTimeout(() => 10)
 
-  useEffect(() => {
     document.addEventListener("mousedown", closeMenu)
+
     return () => {
       document.removeEventListener("mousedown", closeMenu)
     }
-  })
+  }, [])
 
   return (
     <div className={clsx(expand && "expanded")} css={styles}>
