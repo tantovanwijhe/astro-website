@@ -26,7 +26,7 @@ const styles = css`
   h1 {
     font-size: 7.2rem;
     line-height: 1.2;
-    letter-spacing: -0.05em;
+    letter-spacing: -0.03em;
     text-align: center;
     user-select: none;
 
@@ -34,8 +34,8 @@ const styles = css`
     -webkit-text-fill-color: rgba(0, 0, 0, 0);
     background-image: linear-gradient(
       to bottom right,
-      var(--primary--500),
-      var(--neutral--700)
+      var(--neutral--00),
+      var(--primary--100)
     );
   }
 `
