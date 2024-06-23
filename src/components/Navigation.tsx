@@ -60,6 +60,7 @@ const styles = css`
   --base-height: 83px;
   --dynamic-width: min(40rem, 95vw);
 
+z-index: 9999;
   height: var(--base-height);
   position: fixed;
   left: 0;
