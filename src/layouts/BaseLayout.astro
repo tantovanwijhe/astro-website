@@ -5,11 +5,14 @@ import {navMap} from "../nav-map"
 import {faCircleQuestion} from "@fortawesome/free-solid-svg-icons"
 interface Props {
   title: string
+  section?: string
 }
 
-const {title} = Astro.props
+const {title, section}: Props = Astro.props
+
 const icon =
-  navMap.find(option => option.text === title)?.icon || faCircleQuestion
+  navMap.find(option => option.section === (section || title))?.icon ||
+  faCircleQuestion
 ---
 
 <html lang="en">
@@ -22,7 +25,12 @@ const icon =
     <title>{title}</title>
   </head>
   <body>
-    <Navigation client:idle options={navMap} title={title} icon={icon} />
+    <Navigation
+      client:idle
+      options={navMap}
+      section={section || title}
+      icon={icon}
+    />
     <slot />
   </body>
 </html>

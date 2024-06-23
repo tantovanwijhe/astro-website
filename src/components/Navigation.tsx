@@ -7,11 +7,11 @@ import type {NavLink} from "../nav-map"
 
 export const Navigation = ({
   options,
-  title,
+  section,
   icon,
 }: {
   options: NavLink[]
-  title: string
+  section: string
   icon: IconDefinition
 }) => {
   const [menuHeader, setMenuHeader] = useState<string | null>(null)
@@ -41,12 +41,12 @@ export const Navigation = ({
       <nav onClick={() => setExpand(!expand)} tabIndex={0} ref={navRef}>
         <div>
           <Icon icon={icon} />
-          <span>{menuHeader || title}</span>
+          <span>{menuHeader || section}</span>
         </div>
-        <ul onMouseLeave={() => setMenuHeader(title)}>
+        <ul onMouseLeave={() => setMenuHeader(section)}>
           {options.map((option, index) => (
             <a key={index} href={option.path} draggable={false}>
-              <li onMouseEnter={() => setMenuHeader(option.text)}>
+              <li onMouseEnter={() => setMenuHeader(option.section)}>
                 <Icon icon={option.icon} />
               </li>
             </a>
