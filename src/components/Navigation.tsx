@@ -15,7 +15,7 @@ export const Navigation = ({
   icon: IconDefinition
 }) => {
   const [menuHeader, setMenuHeader] = useState<string | null>(null)
-  const [expand, setExpand] = useState<boolean>(false)
+  const [expand, setExpand] = useState<boolean>(true)
   const navRef = useRef<HTMLDivElement>(null)
 
   const closeMenu = (e: MouseEvent) => {
@@ -23,6 +23,11 @@ export const Navigation = ({
       setExpand(false)
     }
   }
+
+  useEffect(() => {
+    setExpand(false)
+    setTimeout(() => navRef.current, 10)
+  }, [])
 
   useEffect(() => {
     document.addEventListener("mousedown", closeMenu)
@@ -93,6 +98,13 @@ const styles = css`
 
       :hover {
         cursor: default;
+        scale: 1;
+      }
+
+      :active {
+        transition-duration: 0.3s;
+        scale: 0.9;
+        transition-property: scale;
       }
 
       div {
@@ -159,9 +171,7 @@ const styles = css`
         rgba(255, 255, 255, 0),
         transparent
       );
-      mask:
-        linear-gradient(#000, #000) content-box,
-        linear-gradient(#000, #000);
+      mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
       mask-composite: exclude;
     }
 
@@ -185,9 +195,7 @@ const styles = css`
       display: flex;
       gap: var(--spacing--5);
 
-      transition:
-        width 0.3s ease-out,
-        background-color 0.3s ease-in-out;
+      transition: width 0.3s ease-out, background-color 0.3s ease-in-out;
 
       i {
         width: var(--base-height);
