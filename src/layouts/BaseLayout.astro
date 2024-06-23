@@ -3,12 +3,8 @@ import "../styles/Global.astro"
 import {Navigation} from "../components/Navigation"
 import {navMap} from "../nav-map"
 import {faCircleQuestion} from "@fortawesome/free-solid-svg-icons"
-interface Props {
-  title: string
-  section?: string
-}
 
-const {title, section}: Props = Astro.props
+const {title, section} = Astro.props
 
 const icon =
   navMap.find(option => option.section === (section || title))?.icon ||
