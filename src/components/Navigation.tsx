@@ -79,6 +79,7 @@ const styles = css`
 
   user-select: none;
 
+  will-change: height;
   transition: height 0.2s ease-out;
 
   &.expanded {
@@ -109,9 +110,8 @@ const styles = css`
       }
 
       :active {
-        transition-duration: 0.3s;
         scale: 0.9;
-        transition-property: scale;
+        transition: scale 0.3s;
       }
 
       div {
@@ -121,8 +121,7 @@ const styles = css`
         background-position: right bottom;
 
         svg {
-          width: 0;
-          height: 0;
+          opacity: 0;
           overflow: hidden;
           user-select: none;
         }
@@ -157,6 +156,7 @@ const styles = css`
     -webkit-backdrop-filter: blur(5px);
     overflow: hidden;
 
+    transition-property: scale;
     transition-duration: 0.3s;
 
     &::before {
@@ -179,22 +179,17 @@ const styles = css`
         rgba(255, 255, 255, 0) 57%,
         rgba(255, 255, 255, 0.1) 100%
       );
-      mask:
-        linear-gradient(#000, #000) content-box,
-        linear-gradient(#000, #000);
+      mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
       mask-composite: exclude;
     }
 
     :hover {
       cursor: pointer;
       scale: 1.05;
-      transition-property: scale;
     }
 
     :active {
-      transition-duration: 0.3s;
       scale: 0.9;
-      transition-property: scale;
     }
 
     > div {
@@ -205,9 +200,7 @@ const styles = css`
       display: flex;
       gap: var(--spacing--5);
 
-      transition:
-        width 0.3s ease-out,
-        background-color 0.3s ease-in-out;
+      transition: width 0.3s ease-out, background-color 0.3s ease-in-out;
 
       i {
         width: var(--base-height);
@@ -221,10 +214,6 @@ const styles = css`
 
         background-color: var(--neutral--800);
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-
-        svg {
-          transition: inherit;
-        }
       }
 
       span {
@@ -241,8 +230,6 @@ const styles = css`
 
         font-size: var(--desktop--heading---h3);
         font-weight: 700;
-
-        transition: width 0.2s ease-out;
       }
     }
 
@@ -258,7 +245,6 @@ const styles = css`
       font-size: var(--desktop--heading---h4);
       font-weight: 600;
 
-      transition: all 0.3s ease;
       transform: translateY(0);
 
       a {
@@ -287,11 +273,10 @@ const styles = css`
           padding: 2rem 2rem;
           border-radius: inherit;
 
-          transition: all 0.5s ease;
-
-          :hover {
+          :hover,
+          :active {
             transition-duration: 0.3s;
-            background-color: var(--neutral--600);
+            background-color: var(--neutral--800);
           }
 
           i {
