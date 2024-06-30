@@ -37,18 +37,14 @@
     rgba(255, 255, 255, 0.1) 100%
   );
   background-blend-mode: luminosity;
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
-/* .glass:hover {
+.glass.hover:hover {
   background: linear-gradient(
       0deg,
       rgba(94, 94, 94, 0.06) 0%,
@@ -56,5 +52,19 @@
     ),
     rgba(255, 255, 255, 0.04);
   background-blend-mode: color-dodge, lighten;
-  border-radius: inherit;
-} */
+  border-radius: 2rem;
+}
+
+.frosted {
+  background: linear-gradient(
+    to bottom right,
+    rgba(128, 128, 128, 0.1),
+    rgba(128, 128, 128, 0.35),
+    rgba(128, 128, 144, 0.55) 55%
+  );
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(50px);
+
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  transition-duration: 0.3s;
+}
