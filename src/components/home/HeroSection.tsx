@@ -1,5 +1,5 @@
 import {css} from "@emotion/react"
-import {Button} from "./Button"
+import {Button} from "../Button"
 import {faAngleDown} from "@fortawesome/free-solid-svg-icons"
 
 export const HeroSection = () => {
@@ -16,7 +16,7 @@ export const HeroSection = () => {
 }
 
 const styles = css`
-  height: calc(80vh);
+  height: 85vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
